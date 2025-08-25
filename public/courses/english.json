@@ -1,0 +1,34 @@
+{
+  "english": {
+    "title": "English Excellence Program",
+    "subtitle": "Master English Communication & Academic Writing",
+    "description": "Develop fluency, confidence, and professional communication skills for academic and career success.",
+    "image": "https://readdy.ai/api/search-image?query=English%20literature%20classroom%20with%20students%20engaged%20in%20discussion%2C%20books%20and%20writing%20materials%20on%20desks%2C%20warm%20educational%20atmosphere%20with%20natural%20lighting%2C%20academic%20setting&width=1440&height=600&seq=englishHero&orientation=landscape",
+    "modules": [
+      {
+        "title": "Grammar & Vocabulary",
+        "duration": "4 weeks",
+        "lessons": 20,
+        "description": "Build strong foundations with advanced grammar rules and vocabulary expansion."
+      },
+      {
+        "title": "Speaking & Pronunciation",
+        "duration": "3 weeks",
+        "lessons": 15,
+        "description": "Develop clear pronunciation and confident speaking skills through practice."
+      },
+      {
+        "title": "Academic Writing",
+        "duration": "5 weeks",
+        "lessons": 25,
+        "description": "Master essay writing, research papers, and professional communication."
+      },
+      {
+        "title": "Literature & Analysis",
+        "duration": "4 weeks",
+        "lessons": 20,
+        "description": "Explore classic and contemporary literature with critical analysis skills."
+      }
+    ]
+  }
+}

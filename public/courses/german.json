@@ -1,0 +1,32 @@
+{
+  "title": "German Language Program",
+  "subtitle": "Master German with Native Speakers",
+  "description": "Learn German language and culture through immersive lessons and practical exercises.",
+  "image": "https://readdy.ai/api/search-image?query=German%20language%20classroom%20with%20cultural%20elements%2C%20students%20learning%20with%20textbooks%20and%20interactive%20materials%2C%20German%20flags%20and%20cultural%20artifacts%20visible%2C%20modern%20educational%20setting&width=1440&height=600&seq=germanHero&orientation=landscape",
+  "modules": [
+    {
+      "title": "Basic German A1",
+      "duration": "6 weeks",
+      "lessons": 30,
+      "description": "Learn essential vocabulary, basic grammar, and everyday conversations."
+    },
+    {
+      "title": "Elementary German A2",
+      "duration": "6 weeks",
+      "lessons": 30,
+      "description": "Expand vocabulary and master past tense and future constructions."
+    },
+    {
+      "title": "Intermediate German B1",
+      "duration": "8 weeks",
+      "lessons": 40,
+      "description": "Develop fluency in complex conversations and business German."
+    },
+    {
+      "title": "Advanced German B2",
+      "duration": "8 weeks",
+      "lessons": 40,
+      "description": "Master advanced grammar and professional German communication."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+
+   {
+    "title": "Türkçe Dil Programı",
+    "subtitle": "Türk Dili ve Kültürünü Öğrenin",
+    "description": "Kapsamlı kültürel dersler ve pratik iletişim çalışmaları ile Türkçeyi öğrenin.",
+    "image": "https://readdy.ai/api/search-image?query=Türkçe%20dil%20sınıfı%2C%20geleneksel%20ve%20modern%20öğelerle%2C%20öğrenciler%20kültürel%20etkinliklerde%2C%20Türk%20kültürel%20eserleri%20ve%20eğitim%20materyalleri%2C%20samimi%20atmosfer&width=1440&height=600&seq=turkishHero&orientation=landscape",
+    "modules": [
+      {
+        "title": "Türk Alfabesi ve Telaffuz",
+        "duration": "3 hafta",
+        "lessons": 15,
+        "description": "Türk alfabesini öğrenin ve doğru telaffuz becerileri kazanın."
+      },
+      {
+        "title": "Temel Dilbilgisi ve Kelime Bilgisi",
+        "duration": "6 hafta",
+        "lessons": 30,
+        "description": "Temel dilbilgisi kurallarını ve günlük yaşamda gerekli kelimeleri öğrenin."
+      },
+      {
+        "title": "Günlük Konuşma Türkçesi",
+        "duration": "6 hafta",
+        "lessons": 30,
+        "description": "Günlük diyalogları ve kültürel iletişimi pratik edin."
+      },
+      {
+        "title": "İleri Düzey Türkçe ve Kültür",
+        "duration": "6 hafta",
+        "lessons": 30,
+        "description": "Türk edebiyatı, tarihi ve ileri düzey dil becerilerini keşfedin."
+      }
+    ]
+  }
+

@@ -1,0 +1,32 @@
+{
+  "title": "Chinese Language Program",
+  "subtitle": "Master Mandarin Chinese",
+  "description": "Learn Mandarin Chinese with expert instructors and comprehensive cultural immersion.",
+  "image": "https://readdy.ai/api/search-image?query=Chinese%20language%20classroom%20with%20traditional%20calligraphy%20and%20modern%20teaching%20materials%2C%20students%20practicing%20characters%20and%20pronunciation%2C%20elegant%20educational%20setting%20with%20Chinese%20cultural%20elements&width=1440&height=600&seq=chineseHero&orientation=landscape",
+  "modules": [
+    {
+      "title": "Pinyin & Pronunciation",
+      "duration": "4 weeks",
+      "lessons": 20,
+      "description": "Master Pinyin system and correct Chinese pronunciation tones."
+    },
+    {
+      "title": "Basic Characters & Grammar",
+      "duration": "8 weeks",
+      "lessons": 40,
+      "description": "Learn essential Chinese characters and fundamental grammar patterns."
+    },
+    {
+      "title": "Conversational Mandarin",
+      "duration": "8 weeks",
+      "lessons": 40,
+      "description": "Practice daily conversations and cultural communication skills."
+    },
+    {
+      "title": "Advanced Chinese & Culture",
+      "duration": "10 weeks",
+      "lessons": 50,
+      "description": "Explore Chinese literature, business communication, and cultural nuances."
+    }
+  ]
+}

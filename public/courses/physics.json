@@ -1,0 +1,32 @@
+{
+  "title": "Physics Excellence Program",
+  "subtitle": "Master Physics Concepts & Applications",
+  "description": "Understand physics principles through hands-on experiments and expert guidance.",
+  "image": "https://readdy.ai/api/search-image?query=Physics%20laboratory%20with%20advanced%20equipment%20and%20experimental%20setup%2C%20students%20conducting%20experiments%20with%20modern%20scientific%20instruments%2C%20professional%20academic%20research%20environment&width=1440&height=600&seq=physicsHero&orientation=landscape",
+  "modules": [
+    {
+      "title": "Classical Mechanics",
+      "duration": "6 weeks",
+      "lessons": 30,
+      "description": "Study motion, forces, energy, and momentum with practical applications."
+    },
+    {
+      "title": "Electricity & Magnetism",
+      "duration": "6 weeks",
+      "lessons": 30,
+      "description": "Explore electrical circuits, magnetic fields, and electromagnetic theory."
+    },
+    {
+      "title": "Waves & Optics",
+      "duration": "4 weeks",
+      "lessons": 20,
+      "description": "Understand wave properties, sound, light, and optical phenomena."
+    },
+    {
+      "title": "Modern Physics",
+      "duration": "6 weeks",
+      "lessons": 30,
+      "description": "Discover quantum mechanics, relativity, and atomic physics concepts."
+    }
+  ]
+}

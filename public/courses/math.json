@@ -1,0 +1,32 @@
+{
+  "title": "Mathematics Mastery Program",
+  "subtitle": "From Algebra to Advanced Calculus",
+  "description": "Build strong mathematical foundations and excel in advanced concepts with expert guidance.",
+  "image": "https://readdy.ai/api/search-image?query=Mathematics%20classroom%20with%20complex%20equations%20on%20whiteboard%2C%20students%20solving%20problems%20at%20desks%2C%20bright%20educational%20environment%20with%20mathematical%20instruments%20and%20geometric%20models&width=1440&height=600&seq=mathHero&orientation=landscape",
+  "modules": [
+    {
+      "title": "Algebra Fundamentals",
+      "duration": "4 weeks",
+      "lessons": 20,
+      "description": "Master algebraic expressions, equations, and problem-solving strategies."
+    },
+    {
+      "title": "Geometry & Trigonometry",
+      "duration": "5 weeks",
+      "lessons": 25,
+      "description": "Explore geometric principles and trigonometric functions with applications."
+    },
+    {
+      "title": "Pre-Calculus",
+      "duration": "4 weeks",
+      "lessons": 20,
+      "description": "Prepare for calculus with advanced functions and analytical geometry."
+    },
+    {
+      "title": "Calculus I & II",
+      "duration": "8 weeks",
+      "lessons": 40,
+      "description": "Master derivatives, integrals, and their real-world applications."
+    }
+  ]
+}

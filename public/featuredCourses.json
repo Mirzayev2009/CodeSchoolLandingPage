@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Coding Mastery",
+    "description": "Learn programming languages, web development, and software engineering from industry experts.",
+    "image": "https://readdy.ai/api/search-image?query=Programming%20code%20on%20computer%20screen%20with%20colorful%20syntax%20highlighting%2C%20modern%20development%20environment%2C%20clean%20workspace%20with%20multiple%20monitors%20showing%20various%20coding%20languages%20and%20frameworks&width=400&height=300&seq=coding1&orientation=landscape",
+    "color": "from-blue-500 to-purple-600",
+    "path": "coding"
+  },
+  {
+    "title": "English Excellence",
+    "description": "Master grammar, vocabulary, writing, and speaking skills for academic and professional success.",
+    "image": "https://readdy.ai/api/search-image?query=Open%20books%20with%20English%20literature%20and%20grammar%20guides%2C%20elegant%20study%20setup%20with%20pen%20and%20paper%2C%20warm%20lighting%20creating%20scholarly%20atmosphere%2C%20classic%20educational%20materials%20arranged%20aesthetically&width=400&height=300&seq=english1&orientation=landscape",
+    "color": "from-green-500 to-teal-600",
+    "path": "english"
+  },
+  {
+    "title": "Mathematics Mastery",
+    "description": "From algebra to calculus, build strong mathematical foundations with step-by-step guidance.",
+    "image": "https://readdy.ai/api/search-image?query=Mathematical%20equations%20and%20geometric%20shapes%20on%20whiteboard%2C%20calculator%20and%20mathematical%20instruments%2C%20clean%20educational%20setup%20with%20formulas%20and%20graphs%2C%20bright%20academic%20environment&width=400&height=300&seq=math1&orientation=landscape",
+    "color": "from-orange-500 to-red-600",
+    "path": "math"
+  },
+  {
+    "title": "German Language",
+    "description": "Master German language skills with native speakers and interactive learning methods.",
+    "image": "https://readdy.ai/api/search-image?query=Modern%20language%20learning%20classroom%20with%20German%20cultural%20elements%2C%20books%20and%20interactive%20materials%2C%20clean%20educational%20environment%20with%20German%20flags%20and%20cultural%20symbols%20visible&width=400&height=300&seq=german1&orientation=landscape",
+    "color": "from-red-500 to-pink-600",
+    "path": "german"
+  },
+  {
+    "title": "Turkish Language",
+    "description": "Learn Turkish language and culture through immersive lessons and practical exercises.",
+    "image": "https://readdy.ai/api/search-image?query=Turkish%20language%20learning%20environment%20with%20cultural%20elements%2C%20modern%20classroom%20setting%20with%20Turkish%20cultural%20artifacts%20and%20educational%20materials%2C%20bright%20and%20welcoming%20atmosphere&width=400&height=300&seq=turkish1&orientation=landscape",
+    "color": "from-yellow-500 to-red-600",
+    "path": "turkish"
+  },
+  {
+    "title": "Chinese Language",
+    "description": "Master Mandarin Chinese with expert instructors and comprehensive learning materials.",
+    "image": "https://readdy.ai/api/search-image?query=Chinese%20language%20classroom%20with%20traditional%20and%20modern%20elements%2C%20calligraphy%20materials%20and%20learning%20tools%2C%20elegant%20educational%20setting%20with%20Chinese%20cultural%20elements&width=400&height=300&seq=chinese1&orientation=landscape",
+    "color": "from-red-500 to-yellow-600",
+    "path": "chinese"
+  },
+  {
+    "title": "SAT Preparation",
+    "description": "Comprehensive SAT prep with proven strategies and practice materials.",
+    "image": "https://readdy.ai/api/search-image?query=Modern%20study%20environment%20with%20SAT%20preparation%20materials%2C%20practice%20tests%20and%20study%20guides%2C%20clean%20educational%20setup%20with%20testing%20materials%20and%20resources&width=400&height=300&seq=sat1&orientation=landscape",
+    "color": "from-purple-500 to-indigo-600",
+    "path": "sat"
+  },
+  {
+    "title": "Physics Excellence",
+    "description": "Master physics concepts with hands-on experiments and expert guidance.",
+    "image": "https://readdy.ai/api/search-image?query=Physics%20laboratory%20with%20modern%20equipment%20and%20experimental%20setup%2C%20scientific%20instruments%20and%20educational%20materials%2C%20professional%20academic%20environment&width=400&height=300&seq=physics1&orientation=landscape",
+    "color": "from-blue-500 to-cyan-600",
+    "path": "physics"
+  }
+]
