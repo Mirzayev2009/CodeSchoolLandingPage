@@ -1,128 +1,114 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import Navigation from "../navigation/Navigation";
-import Footer from "../footer/Footer";
+// src/pages/Courses.jsx
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../footer/Footer";
 
-const CoursesPage = () => {
-  const [activeTab, setActiveTab] = useState("all");
-    const [featuredCourses, setFeaturedCourses] = useState([]);
-    const navigate = useNavigate()
+// Fake API Array (temporar, keyinchalik haqiqiy API chaqiruvi bilan almashtiriladi)
+// const fetchCourses = async () => {
+//   const { data } = await api.get("/courses");
+//   return data;
+// };
+const fakeCourses = [
+  {
+    id: 1,
+    slug: "web-dev",
+    title: "Full-Stack Web Dasturlash",
+    description:
+      "HTML, CSS, JavaScript, React va Node.js orqali to‘liq dasturlar yaratishni o‘rganing.",
+    image: "https://source.unsplash.com/800x500/?coding,web",
+    level: "Boshlang‘ich",
+    duration: "12 hafta",
+    tag: "Ommabop",
+  },
+  {
+    id: 2,
+    slug: "data-science",
+    title: "Data Science va Mashina O‘rganish",
+    description:
+      "Python, Pandas va ML modellarini amaliy loyihalar orqali o‘zlashtiring.",
+    image: "https://source.unsplash.com/800x500/?data,science",
+    level: "O‘rta",
+    duration: "16 hafta",
+    tag: "Yangi",
+  },
+  {
+    id: 3,
+    slug: "ui-ux",
+    title: "UI/UX Dizayn Masterklass",
+    description:
+      "Go‘zal interfeyslar va mukammal foydalanuvchi tajribasini yaratishni o‘rganing.",
+    image: "https://source.unsplash.com/800x500/?design,uiux",
+    level: "Barcha darajalar",
+    duration: "8 hafta",
+    tag: "Boshlang‘ich",
+  },
+];
 
-    useEffect(() => {
-        async function fetchCourses() {
-            try {
-                const response = await fetch('/featuredCourses.json');
-                const data = await response.json();
-                setFeaturedCourses(data);
-            } catch (error) {
-                console.error("Error fetching courses data:", error);
-            }
-        }
-        fetchCourses();
-    }, [])
-
+export default function Courses() {
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation currentPage={"courses"} navigateToPage={navigate} />
-      <div className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-r from-purple-600 to-purple-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Our Courses
-            </h1>
-            <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-              Explore our comprehensive range of courses designed to help you
-              achieve your learning goals
-            </p>
-          </div>
-        </section>
-        {/* Course Categories */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <Button
-                onClick={() => setActiveTab("all")}
-                className={`!rounded-button whitespace-nowrap ${
-                  activeTab === "all"
-                    ? "bg-purple-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
-              >
-                All Courses
-              </Button>
-              <Button
-                onClick={() => setActiveTab("programming")}
-                className={`!rounded-button whitespace-nowrap ${
-                  activeTab === "programming"
-                    ? "bg-purple-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
-              >
-                Programming
-              </Button>
-              <Button
-                onClick={() => setActiveTab("languages")}
-                className={`!rounded-button whitespace-nowrap ${
-                  activeTab === "languages"
-                    ? "bg-purple-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
-              >
-                Languages
-              </Button>
-              <Button
-                onClick={() => setActiveTab("mathematics")}
-                className={`!rounded-button whitespace-nowrap ${
-                  activeTab === "mathematics"
-                    ? "bg-purple-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
-              >
-                Mathematics
-              </Button>
+    <div className="min-h-screen flex flex-col">
+      {/* Animatsiyali fon */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-200 via-white to-pink-200 animate-gradient-x"></div>
+
+      <div className="max-w-7xl mx-auto w-full flex-grow px-4 sm:px-8 py-10">
+        {/* Orqaga tugmasi */}
+        <button
+          onClick={() => navigate("/")}
+          className="mb-8 inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition"
+        >
+          ← Bosh sahifaga qaytish
+        </button>
+
+        {/* Sarlavha */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            Kurslarimizni Kashf Eting
+          </h1>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Soha mutaxassislari, real loyihalar va qo‘llab-quvvatlovchi
+            hamjamiyat bilan birga o‘rganing.
+          </p>
+        </div>
+
+        {/* Kurs kartalari */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {fakeCourses.map((course) => (
+            <div
+              key={course.id}
+              onClick={() => navigate(`/courses/${course.slug}`)}
+              className="cursor-pointer bg-white shadow-md rounded-xl overflow-hidden hover:scale-105 hover:shadow-xl transition transform duration-300"
+            >
+              <div className="relative">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="h-40 w-full object-cover"
+                />
+                <span className="absolute top-3 left-3 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  {course.tag}
+                </span>
+              </div>
+              <div className="p-4 text-left">
+                <h2 className="text-lg font-semibold text-gray-900 mb-1">
+                  {course.title}
+                </h2>
+                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  {course.description}
+                </p>
+                <div className="flex justify-between text-xs text-gray-500">
+                  <span>📅 {course.duration}</span>
+                  <span>🎯 {course.level}</span>
+                </div>
+              </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {featuredCourses.map((course, index) => (
-                <Card
-                  key={index}
-                  className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
-                  onClick={() => navigateToPage(course.path)}
-                >
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                    />
-                  </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl font-bold">
-                      {course.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">{course.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-purple-600 font-semibold">
-                        $299
-                      </span>
-                      <Button className="!rounded-button whitespace-nowrap bg-purple-600 text-white">
-                        Learn More
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+          ))}
+        </div>
       </div>
+
+      {/* Footer */}
       <Footer />
     </div>
-  )};
-
-  export default CoursesPage;
+  );
+}

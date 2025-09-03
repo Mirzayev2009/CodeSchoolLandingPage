@@ -11,28 +11,36 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation  as SwiperNavigation} from "swiper/modules";
+import {
+  Pagination,
+  Autoplay,
+  Navigation as SwiperNavigation,
+} from "swiper/modules";
 
 import Navigation from "../navigation/Navigation";
 import Footer from "../footer/Footer";
 import { useNavigate } from "react-router-dom";
+import HomePageSections from "./sections";
+import Location from "./Location";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
-    const [currentPage, setCurrentPage] = useState("home");
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [codingCount, setCodingCount] = useState(0);
-    const [activeTab, setActiveTab] = useState("all");
-    const [mathCount, setMathCount] = useState(0);
-    const [englishCount, setEnglishCount] = useState(0);
-    const [isVisible, setIsVisible] = useState({
-        success: false,
-        courses: false,
-        experts: false,
-        forum: false,
-    });
-    const [heroSlides, setHeroSlides] = useState([]);
-    const [featuredCourses, setFeaturedCourses] = useState([]);
-    const [experts, setExperts] = useState([]);
+  const [currentPage, setCurrentPage] = useState("home");
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [codingCount, setCodingCount] = useState(0);
+  const [activeTab, setActiveTab] = useState("all");
+  const [mathCount, setMathCount] = useState(0);
+  const [englishCount, setEnglishCount] = useState(0);
+  const [isVisible, setIsVisible] = useState({
+    success: false,
+    courses: false,
+    experts: false,
+    forum: false,
+  });
+  const [clicked, setClicked] = useState(false);
+  const [heroSlides, setHeroSlides] = useState([]);
+  const [featuredCourses, setFeaturedCourses] = useState([]);
+  const [experts, setExperts] = useState([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,7 +66,7 @@ const HomePage = () => {
         if (section) observer.unobserve(section);
       });
   }, [currentPage]);
-  const swiperModules = [Pagination, Autoplay, SwiperNavigation ];
+  const swiperModules = [Pagination, Autoplay, SwiperNavigation];
   useEffect(() => {
     const animateCounter = (setter, target) => {
       let current = 0;
@@ -89,7 +97,6 @@ const HomePage = () => {
     return () => observer.disconnect();
   }, [currentPage]);
 
-
   // Fetch Hero Slides
   useEffect(() => {
     fetch("/heroSlides.json")
@@ -114,12 +121,11 @@ const HomePage = () => {
       .catch((err) => console.error("Error loading experts:", err));
   }, []);
 
-const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white">
-    <Navigation currentPage={currentPage} navigateToPage={navigate} />
+      <Navigation currentPage={currentPage} navigateToPage={navigate} />
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         <Swiper
@@ -138,10 +144,12 @@ const navigate = useNavigate()
           {heroSlides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div className="relative h-full">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('${slide.image}')` }} 
-                >
+                <div className="absolute inset-0">
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 </div>
                 <div className="relative z-10 h-full flex items-center">
@@ -153,14 +161,12 @@ const navigate = useNavigate()
                       <p className="text-xl text-gray-200 mb-8 leading-relaxed">
                         {slide.description}
                       </p>
-                      <a
-                        href="https://readdy.ai/home/fe6177b6-fd92-473f-aa60-8054a68482b6/462c05aa-f022-474e-a549-4d7117cdd796"
-                        data-readdy="true"
-                      >
+                      <Link to='/enroll'>
+                      
                         <Button className="!rounded-button whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg cursor-pointer">
                           Enroll Now
-                        </Button>
-                      </a>
+                        </Button></Link>
+                     
                     </div>
                   </div>
                 </div>
@@ -169,7 +175,7 @@ const navigate = useNavigate()
           ))}
         </Swiper>
       </section>
-      {/* Our Success Section */}
+      {/* Bizning Yutuqlar Bo‘limi */}
       <section
         id="success-section"
         className={`py-20 bg-gray-50 transform transition-all duration-1000 ${
@@ -181,14 +187,17 @@ const navigate = useNavigate()
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Our Success Stories
+              Bizning Muvaffaqiyat Hikoyalarimiz
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Thousands of students have achieved their goals through our
-              comprehensive educational programs
+              Minglab o‘quvchilar bizning keng qamrovli ta’lim dasturlarimiz
+              orqali o‘z maqsadlariga erishdilar
             </p>
           </div>
+
+          {/* Uchta karta */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* 1. Dasturlash */}
             <Card className="text-center p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <CardHeader>
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -200,18 +209,20 @@ const navigate = useNavigate()
               </CardHeader>
               <CardContent>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Coding Students
+                  Dasturlash O‘quvchilari
                 </h3>
                 <p className="text-gray-600">
-                  Successfully completed our programming courses and landed
-                  their dream jobs
+                  Frontend, Backend, Python, Sun’iy Intellekt va Mobil
+                  Dasturlash sohalarida muvaffaqiyatga erishdilar
                 </p>
               </CardContent>
             </Card>
+
+            {/* 2. Grafik Dizayn */}
             <Card className="text-center p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <CardHeader>
                 <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-calculator text-2xl text-orange-600"></i>
+                  <i className="fas fa-paint-brush text-2xl text-orange-600"></i>
                 </div>
                 <CardTitle className="text-3xl font-bold text-orange-600">
                   {mathCount.toLocaleString()}+
@@ -219,14 +230,16 @@ const navigate = useNavigate()
               </CardHeader>
               <CardContent>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Math Students
+                  Grafik Dizayn va SMM
                 </h3>
                 <p className="text-gray-600">
-                  Achieved excellence in mathematics and improved their academic
-                  performance
+                  Grafik Dizayn, 3D Max, Rasm ishlash va SMM bo‘yicha yuqori
+                  natijalarga erishdilar
                 </p>
               </CardContent>
             </Card>
+
+            {/* 3. Asosiy Kurslar */}
             <Card className="text-center p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <CardHeader>
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -238,26 +251,27 @@ const navigate = useNavigate()
               </CardHeader>
               <CardContent>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  English Students
+                  Foundation
                 </h3>
                 <p className="text-gray-600">
-                  Enhanced their communication skills and achieved fluency in
-                  English
+                  Word, Excel va boshqa asosiy kompyuter bilimlarini
+                  mustahkamladilar
                 </p>
               </CardContent>
             </Card>
           </div>
+
+          {/* Tugma */}
           <div className="text-center">
             <Button
               onClick={() => navigate("results")}
               className="!rounded-button whitespace-nowrap bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 cursor-pointer"
             >
-              See More Results
+              Ko‘proq Natijalarni Ko‘rish
             </Button>
           </div>
         </div>
       </section>
-      {/* Featured Courses Section */}
       <section
         id="courses-section"
         className={`py-20 bg-white transform transition-all duration-1000 ${
@@ -320,15 +334,16 @@ const navigate = useNavigate()
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Meet Our Experts
+              Bizning O'qituvchilarimiz
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Learn from industry professionals and experienced educators who
-              are passionate about teaching
+              Tajribali mutaxassislar jamoasi bilan tanishing, ular sizning
+              o'rganish safarlaringizda yo'l-yo'riq ko'rsatishga tayyor va
+              ilhomlantiradi
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {experts.map((expert, index) => (
+            {experts.slice(0, 4).map((expert, index) => (
               <Card
                 key={index}
                 className="text-center p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
@@ -363,6 +378,7 @@ const navigate = useNavigate()
           </div>
         </div>
       </section>
+      <Location />
       {/* Community Forum Section */}
       <section
         id="forum-section"
@@ -372,24 +388,23 @@ const navigate = useNavigate()
             : "translate-y-10 opacity-0"
         }`}
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Join Our Community Forum
+              Bepul sinov darsiga yoziling
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Connect with fellow students, share your experiences, and get
-              support from our vibrant learning community
+            <p className="text-lg text-gray-600">
+              Sizga ishonch bilan o‘rganishni boshlash uchun bepul sinov darsini
+              taklif qilamiz
             </p>
           </div>
           <Card className="p-8">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
-                Share Your Story
+                O‘zingiz haqingizda aytib bering
               </CardTitle>
               <CardDescription className="text-gray-600">
-                Tell us about yourself and join thousands of students in our
-                community
+                Ishtirok etish uchun ma’lumotlaringizni kiriting
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -397,136 +412,83 @@ const navigate = useNavigate()
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      First Name *
+                      Ism *
                     </label>
                     <Input
                       className="border border-gray-300 text-sm"
-                      placeholder="Enter your first name"
+                      placeholder="Ismingizni kiriting"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Last Name *
+                      Familiya *
                     </label>
                     <Input
                       className="border border-gray-300 text-sm"
-                      placeholder="Enter your last name"
+                      placeholder="Familiyangizni kiriting"
                     />
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <Input
-                      type="email"
-                      className="border border-gray-300 text-sm"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number *
-                    </label>
-                    <Input
-                      className="border border-gray-300 text-sm"
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Age *
-                    </label>
-                    <Input
-                      type="number"
-                      className="border border-gray-300 text-sm"
-                      placeholder="Enter your age"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Country *
-                    </label>
-                    <Input
-                      className="border border-gray-300 text-sm"
-                      placeholder="Enter your country"
-                    />
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Education Level *
-                    </label>
-                    <Input
-                      className="border border-gray-300 text-sm"
-                      placeholder="e.g., High School, Bachelor's"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Current Occupation *
-                    </label>
-                    <Input
-                      className="border border-gray-300 text-sm"
-                      placeholder="Enter your occupation"
-                    />
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Interested Subject *
-                    </label>
-                    <Input
-                      className="border border-gray-300 text-sm"
-                      placeholder="Coding, Math, English, etc."
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Experience Level *
-                    </label>
-                    <Input
-                      className="border border-gray-300 text-sm"
-                      placeholder="Beginner, Intermediate, Advanced"
-                    />
-                  </div>
-                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Learning Goals *
+                    Telefon raqami *
                   </label>
-                  <Textarea
+                  <Input
                     className="border border-gray-300 text-sm"
-                    rows={4}
-                    placeholder="Tell us about your learning goals and what you hope to achieve..."
+                    placeholder="+998 90 123 45 67"
                   />
                 </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Additional Comments
+                    Telegram username (ixtiyoriy)
                   </label>
-                  <Textarea
+                  <Input
                     className="border border-gray-300 text-sm"
-                    rows={3}
-                    placeholder="Any additional information you'd like to share..."
+                    placeholder="@username"
                   />
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Qiziqish fani *
+                  </label>
+                  <select className="w-full border border-gray-300 text-sm rounded-md p-2">
+                    <option value="">Fan tanlang</option>
+                    <option value="frontend">Frontend Dasturlash</option>
+                    <option value="backend">Backend Dasturlash</option>
+                    <option value="python">Python Dasturlash</option>
+                    <option value="ai">Sun’iy Intellekt</option>
+                    <option value="design">Grafik Dizayn</option>
+                    <option value="3dmax">3D Max</option>
+                    <option value="smm">SMM (Marketing)</option>
+                    <option value="foundation">Foundation</option>
+                  </select>
+                </div>
+
                 <div className="text-center">
-                  <Button className="!rounded-button whitespace-nowrap bg-green-600 hover:bg-green-700 text-white px-12 py-3 cursor-pointer">
-                    Join Community
-                  </Button>
+                  {clicked ? (
+                    <p className="text-green-600 font-semibold mt-2">
+                      Biz siz bilan tez orada aloqaga chiqamiz ✅
+                    </p>
+                  ) : (
+                    <Button
+                      onClick={() => setClicked(true)}
+                      className="!rounded-button whitespace-nowrap bg-green-600 hover:bg-green-700 text-white px-12 py-3 cursor-pointer"
+                    >
+                      Qo‘shilish
+                    </Button>
+                  )}
                 </div>
               </form>
             </CardContent>
           </Card>
         </div>
       </section>
-        <Footer />
+      <HomePageSections />
+
+      <Footer />
     </div>
   );
 };

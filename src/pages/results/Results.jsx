@@ -1,200 +1,158 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import Navigation from "../navigation/Navigation";
+// src/pages/Results.jsx
+import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import Footer from "../footer/Footer";
 
-const ResultsPage = () => {
-  const [codingCount, setCodingCount] = useState(0);
-  const [mathCount, setMathCount] = useState(0);
-  const [englishCount, setEnglishCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState("results");
+// Fake API Arrays (temporary, replace later with real API calls)
+// const stories = await getSuccessStories();
+// const courses = await getCourses();
 
-  useEffect(() => {
-    const animateCounter = (setter, target) => {
-      let current = 0;
-      const increment = target / 100;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          setter(target);
-          clearInterval(timer);
-        } else {
-          setter(Math.floor(current));
-        }
-      }, 20);
-    };
+const fakeCourses = [
+  { slug: "web-dev", title: "Full-Stack Web Dasturlash" },
+  { slug: "data-science", title: "Data Science & Sun’iy Intellekt" },
+  { slug: "design", title: "UI/UX Dizayn" },
+];
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.target.id === "success-section") {
-          animateCounter(setCodingCount, 15420);
-          animateCounter(setMathCount, 12890);
-          animateCounter(setEnglishCount, 18650);
-        }
-      });
-    });
+const fakeStories = [
+  {
+    id: 1,
+    student_name: "Dilshod Karimov",
+    date: "2025-08-10",
+    avatar: "https://source.unsplash.com/100x100/?portrait,man",
+    summary:
+      "Kursdan keyin IT kompaniyada dasturchi bo‘lib ish boshladim. Bu markaz hayotimni o‘zgartirdi!",
+    course_slug: "web-dev",
+  },
+  {
+    id: 2,
+    student_name: "Madina To‘xtayeva",
+    date: "2025-08-14",
+    avatar: "https://source.unsplash.com/100x100/?portrait,woman",
+    summary:
+      "Data Science kursi orqali chet eldagi kompaniyaga masofaviy ishlash imkoniyatiga ega bo‘ldim.",
+    course_slug: "data-science",
+  },
+  {
+    id: 3,
+    student_name: "Javohir Raxmonov",
+    date: "2025-08-20",
+    avatar: "https://source.unsplash.com/100x100/?portrait,young",
+    summary:
+      "Dizayn kursidan so‘ng portfolio tuzdim va bir nechta freelancing buyurtmalar oldim.",
+    course_slug: "design",
+  },
+];
 
-    const successSection = document.getElementById("success-section");
-    if (successSection) observer.observe(successSection);
+export default function Results() {
+  const navigate = useNavigate();
+  const [courseFilter, setCourseFilter] = useState("");
 
-    return () => observer.disconnect();
-  }, [currentPage]);
+  const filtered = useMemo(() => {
+    if (!courseFilter) return fakeStories;
+    return fakeStories.filter(
+      (s) => s.course_slug === courseFilter || s.courseSlug === courseFilter
+    );
+  }, [courseFilter]);
 
-
-    return (
-    <div className="min-h-screen bg-white">
-        <Navigation currentPage={currentPage} navigateToPage={setCurrentPage} />
-      <div className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-r from-blue-600 to-blue-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Our Success Stories
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100 flex flex-col">
+      {/* Header */}
+      <div className="relative bg-indigo-600 text-white py-12">
+        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold">
+              Muvaffaqiyat Hikoyalari
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Discover how our students have transformed their lives through
-              education and achieved remarkable success in their careers
+            <p className="text-indigo-100 mt-2 text-lg">
+              Talabalarimizning haqiqiy natijalari bilan tanishing.
             </p>
           </div>
-        </section>
-        {/* Statistics Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-8">
-              <Card className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100">
-                <CardHeader>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">
-                    {codingCount.toLocaleString()}+
-                  </div>
-                  <CardTitle className="text-xl text-gray-900">
-                    Coding Graduates
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Successfully employed in tech companies
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100">
-                <CardHeader>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    94%
-                  </div>
-                  <CardTitle className="text-xl text-gray-900">
-                    Employment Rate
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Within 6 months of graduation</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100">
-                <CardHeader>
-                  <div className="text-4xl font-bold text-purple-600 mb-2">
-                    45+
-                  </div>
-                  <CardTitle className="text-xl text-gray-900">
-                    Partner Companies
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Hiring our graduates</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-8 bg-gradient-to-br from-orange-50 to-orange-100">
-                <CardHeader>
-                  <div className="text-4xl font-bold text-orange-600 mb-2">
-                    $75K
-                  </div>
-                  <CardTitle className="text-xl text-gray-900">
-                    Average Salary
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">For entry-level positions</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-        {/* Success Stories */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-              Student Success Stories
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="overflow-hidden">
-                <div className="h-64 overflow-hidden">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=professional%20young%20woman%20in%20tech%20office%20environment%20working%20on%20computer%2C%20modern%20workspace%20with%20multiple%20screens%2C%20casual%20business%20attire%2C%20confident%20pose&width=400&height=300&seq=success1&orientation=landscape"
-                    alt="Success Story 1"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold">
-                    Sarah Johnson
-                  </CardTitle>
-                  <p className="text-blue-600">Software Engineer at Google</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    "The coding bootcamp completely transformed my career.
-                    Within 3 months of graduating, I landed my dream job at
-                    Google."
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden">
-                <div className="h-64 overflow-hidden">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=young%20male%20professional%20in%20modern%20startup%20office%20environment%2C%20business%20casual%20attire%2C%20working%20on%20laptop%2C%20collaborative%20workspace%20background&width=400&height=300&seq=success2&orientation=landscape"
-                    alt="Success Story 2"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold">
-                    Michael Chen
-                  </CardTitle>
-                  <p className="text-blue-600">Data Scientist at Amazon</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    "The mathematics program gave me the foundation I needed to
-                    excel in data science. Now I'm leading projects at Amazon."
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden">
-                <div className="h-64 overflow-hidden">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=professional%20woman%20presenting%20in%20corporate%20meeting%20room%2C%20business%20formal%20attire%2C%20confident%20pose%2C%20modern%20office%20setting%20with%20presentation%20screen&width=400&height=300&seq=success3&orientation=landscape"
-                    alt="Success Story 3"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold">
-                    Emily Rodriguez
-                  </CardTitle>
-                  <p className="text-blue-600">Technical Lead at Microsoft</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    "The comprehensive curriculum and expert mentorship helped
-                    me advance to a leadership position at Microsoft."
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-white text-indigo-600 px-4 py-2 rounded-lg shadow hover:scale-105 transition"
+          >
+            ⬅️ Orqaga
+          </button>
+        </div>
       </div>
-      <Footer />
-    </div>
-  )};
 
-  export default ResultsPage;
+      {/* Content */}
+      <div className="flex-1 max-w-6xl mx-auto px-6 py-12 w-full">
+        {/* Filter */}
+        <div className="flex items-center justify-end mb-8">
+          <select
+            value={courseFilter}
+            onChange={(e) => setCourseFilter(e.target.value)}
+            className="border border-gray-300 rounded-lg p-2 text-sm shadow-sm focus:ring-2 focus:ring-indigo-500"
+          >
+            <option value="">Barcha kurslar</option>
+            {fakeCourses.map((c) => (
+              <option key={c.slug} value={c.slug}>
+                {c.title}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Stories */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.08 },
+            },
+          }}
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {filtered.length === 0 && (
+            <p className="text-gray-600 col-span-3">
+              Hozircha hikoyalar mavjud emas.
+            </p>
+          )}
+          {filtered.map((s) => (
+            <motion.div
+              key={s.id}
+              variants={{
+                hidden: { opacity: 0, y: 15 },
+                show: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="bg-white border rounded-2xl p-6 shadow hover:shadow-lg transition flex flex-col"
+            >
+              <div className="flex items-center gap-4">
+                {s.avatar && (
+                  <img
+                    src={s.avatar}
+                    alt={s.student_name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                )}
+                <div>
+                  <div className="font-semibold text-gray-900">
+                    {s.student_name}
+                  </div>
+                  <div className="text-xs text-gray-500">{s.date}</div>
+                </div>
+              </div>
+              <p className="text-gray-700 mt-4 flex-1">{s.summary}</p>
+              <div className="mt-4 text-sm text-gray-600 font-medium">
+                📚 Kurs:{" "}
+                {
+                  fakeCourses.find((c) => c.slug === s.course_slug)?.title ||
+                  s.course_slug
+                }
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Footer */}
+      <Footer/>
+    </div>
+  );
+}

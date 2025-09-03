@@ -1,113 +1,176 @@
-  import React, { useState } from "react";
-  import { useNavigate } from "react-router-dom";
-  
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { GraduationCap, Phone, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const NAV_HEIGHT = 72;
 
 
-  const Navigation = ({currentPage, navigateToPage}) => {
+const items = [
+  { label: "Natijalar", id: "success-section" },
+  { label: "Kurslar", id: "courses-section" },
+  { label: "O'qituvchilar", id: "experts-section" },
+  { label: "Bepul sinov dars", id: "forum-section" },
+];
 
-
+export default function Navigation({ currentPage, navigateToPage }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const scrollToSection = (sectionId) => {
+  const [active, setActive] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const onScroll = () => {
+      const fromTop = window.scrollY + NAV_HEIGHT + 12;
+      let current = "";
+      for (const it of items) {
+        const el = document.getElementById(it.id);
+        if (!el) continue;
+        if (el.offsetTop <= fromTop) {
+          current = it.id;
+        }
+      }
+      setActive(current);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
     if (currentPage !== "home") {
       navigateToPage("home");
       setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
+          window.scrollTo({ top, behavior: "smooth" });
         }
-      }, 100);
+      }, 180);
     } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
+        window.scrollTo({ top, behavior: "smooth" });
       }
     }
     setIsMenuOpen(false);
-  }
+  };
 
-  const navigate = useNavigate()
-  return(
-
-
-    <nav className="fixed top-0 w-full bg-white shadow-lg z-50">
+  return (
+    <nav className="fixed top-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center justify-between h-16">
+          {/* Brand */}
           <div
-            className="flex items-center cursor-pointer"
+            className="flex items-center cursor-pointer gap-2"
             onClick={() => navigate("/")}
           >
-            <i className="fas fa-graduation-cap text-2xl text-blue-600 mr-2"></i>
-            <span className="text-xl font-bold text-gray-900">CodeSchool</span>
+          <div className="w-26 h-16 rounded-full overflow-hidden flex items-center justify-center bg-gray-200">
+            <img className="w-fit" src="/images/ava_white.jpg" alt="" />
+
           </div>
+          </div>
+
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("success-section")}
-              className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer"
+            {items.map((it) => {
+              const isActive = active === it.id;
+              return (
+                <button
+                  key={it.id}
+                  onClick={() => scrollToSection(it.id)}
+                  className={`relative font-medium transition-transform duration-200
+                    ${isActive ? "text-blue-600 scale-110" : "text-gray-700 hover:text-blue-600 hover:scale-110"}`}
+                >
+                  {it.label}
+
+                  {/* Animated underline */}
+                  <span className="absolute left-0 right-0 bottom-[-6px] mx-auto h-[2px] rounded-full overflow-hidden">
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.span
+                          initial={{ width: 0 }}
+                          animate={{ width: "100%" }}
+                          exit={{ width: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="block h-[2px] bg-blue-600"
+                        />
+                      )}
+                    </AnimatePresence>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Contact + Cabinet */}
+          <div className="hidden md:flex items-center space-x-4">
+            <a
+              href="tel:+998998888888"
+              className="flex items-center gap-2 text-gray-800 hover:text-blue-600 transition-colors"
             >
-              Results
-            </button>
+              <Phone size={16} />
+              <span className="font-semibold">+998 50 400 40 00</span>
+            </a>
             <button
-              onClick={() => scrollToSection("courses-section")}
-              className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 shadow-sm transition-colors"
+              onClick={() => navigate("/cabinet")}
             >
-              Courses
-            </button>
-            <button
-              onClick={() => scrollToSection("experts-section")}
-              className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer"
-            >
-              Teachers
-            </button>
-            <button
-              onClick={() => scrollToSection("forum-section")}
-              className="text-gray-700 hover:text-blue-600 transition-colors cursor-pointer"
-            >
-              Register
+              Shaxsiy kabinet
             </button>
           </div>
+
+          {/* Mobile Toggle */}
           <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 cursor-pointer"
-            >
-              <i
-                className={`fas ${isMenuOpen ? "fa-times" : "fa-bars"} text-xl`}
-              ></i>
+            <button onClick={() => setIsMenuOpen((s) => !s)}>
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <button
-              onClick={() => scrollToSection("results")}
-              className="block px-3 py-2 text-gray-700 hover:text-blue-600 cursor-pointer"
-            >
-              Results
-            </button>
-            <button
-              onClick={() => scrollToSection("courses")}
-              className="block px-3 py-2 text-gray-700 hover:text-blue-600 cursor-pointer"
-            >
-              Courses
-            </button>
-            <button
-              onClick={() =>scrollToSection("teachers")}
-              className="block px-3 py-2 text-gray-700 hover:text-blue-600 cursor-pointer"
-            >
-              Teachers
-            </button>
-            <button
-              onClick={() => scrollToSection("forum")}
-              className="block px-3 py-2 text-gray-700 hover:text-blue-600 cursor-pointer"
-            >
-              Register
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
-  )};
 
-  export default Navigation;
+      {/* Mobile Menu with animation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden absolute top-full left-0 w-full bg-white border-t shadow-lg z-40"
+          >
+            <div className="px-4 py-3 space-y-2">
+              {items.map((it) => (
+                <button
+                  key={it.id}
+                  onClick={() => scrollToSection(it.id)}
+                  className="block w-full text-left px-3 py-2 rounded-md font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all"
+                >
+                  {it.label}
+                </button>
+              ))}
+              <div className="pt-3 border-t mt-3 flex items-center justify-between">
+                <a
+                  href="tel:+998998888888"
+                  className="flex items-center gap-2 text-gray-800 hover:text-blue-600 transition-colors"
+                >
+                  <Phone size={16} />
+                  <span className="font-medium">+998 99 888 88 88</span>
+                </a>
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate("/cabinet");
+                  }}
+                  className="px-3 py-1 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
+                >
+                  Kabinet
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+}

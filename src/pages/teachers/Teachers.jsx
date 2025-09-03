@@ -1,91 +1,83 @@
+// src/pages/Teachers.jsx
 import React, { useEffect, useState } from "react";
-import Footer from "../footer/Footer";
-import Navigation from "../navigation/Navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
+import Footer from "../footer/Footer"; // your existing footer
+import { motion } from "framer-motion";
 
+export default function Teachers() {
+  const [teachers, setTeachers] = useState([]);
+  const [filter, setFilter] = useState("");
+  const navigate = useNavigate();
 
-const TeachersPage = () => {
+  useEffect(() => {
+    // Real API would be like: fetch("/api/teachers")
+    fetch("/experts.json")
+      .then((res) => res.json())
+      .then((data) => setTeachers(data))
+      .catch(() => setTeachers([]));
+  }, []);
 
+  const filteredTeachers = filter
+    ? teachers.filter((t) => t.subject.toLowerCase().includes(filter.toLowerCase()))
+    : teachers;
 
-    const [experts, setExperts] = useState([])
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative">
+      {/* Back Button */}
+      <div className="max-w-6xl mx-auto px-6 py-6">
+        <button
+          onClick={() => navigate("/")}
+          className="mb-6 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+        >
+          ← Orqaga
+        </button>
 
-    useEffect(() => {
-        async function fetchExperts() {
-            try {
-                const response = await fetch('/experts.json');
-                const data = await response.json();
-                setExperts(data);
-            } catch (error) {
-                console.error("Error fetching experts data:", error);
-            }
-        }
-        fetchExperts();
-    }, [])
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Bizning Ustozlar</h1>
+        <p className="text-gray-600 mb-6">O‘z sohasining mutaxassislari bilan tanishing</p>
 
-    return (
-    <div className="min-h-screen bg-white">
-      <Navigation currentPage={"teachers"} navigateToPage={() => {}} />
-      <div className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-r from-green-600 to-green-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Meet Our Expert Teachers
-            </h1>
-            <p className="text-xl text-green-100 max-w-3xl mx-auto">
-              Learn from industry professionals with years of experience in
-              their respective fields
-            </p>
-          </div>
-        </section>
-        {/* Teachers Grid */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-3 gap-8">
-              {experts.concat(experts).map((expert, index) => (
-                <Card
-                  key={index}
-                  className="overflow-hidden hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="h-64 overflow-hidden">
-                    <img
-                      src={expert.image}
-                      alt={expert.name}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                    />
-                  </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl font-bold">
-                      {expert.name}
-                    </CardTitle>
-                    <p className="text-green-600">{expert.subject}</p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">
-                      With over 10 years of experience in teaching and industry
-                      practice, specializing in advanced concepts and practical
-                      applications.
-                    </p>
-                    <div className="flex space-x-4">
-                      <i className="fab fa-linkedin text-gray-400 hover:text-blue-600 cursor-pointer"></i>
-                      <i className="fab fa-twitter text-gray-400 hover:text-blue-400 cursor-pointer"></i>
-                      <i className="fas fa-globe text-gray-400 hover:text-green-600 cursor-pointer"></i>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Subject Filter */}
+        <select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="border rounded-md p-2 mb-8"
+        >
+          <option value="">Barcha fanlar</option>
+          {teachers.map((t, i) => (
+            <option key={i} value={t.subject}>
+              {t.subject}
+            </option>
+          ))}
+        </select>
+
+        {/* Teacher Grid */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+          }}
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+        >
+          {filteredTeachers.map((t, idx) => (
+            <motion.div
+              key={idx}
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+              whileHover={{ y: -5 }}
+              onClick={() => navigate(`/teachers/${idx + 1}`)}
+              className="cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+            >
+              <img src={t.image} alt={t.name} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h2 className="text-lg font-semibold text-gray-900">{t.name}</h2>
+                <p className="text-sm text-gray-600 mt-1">{t.subject}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-      <Footer/>
-    </div>
-  )};
 
-  export default TeachersPage;
+      <Footer />
+    </div>
+  );
+}
