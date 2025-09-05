@@ -1,28 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { use, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 // --- Fake API Array (for now) ---
-const fakeCourses = [
-  {
-    slug: "frontend",
-    title: "Frontend Development",
-    description: "HTML, CSS, JavaScript va React orqali zamonaviy web yaratish.",
-    technologies: ["HTML", "CSS", "JavaScript", "React"],
-  },
-  {
-    slug: "backend",
-    title: "Backend Development",
-    description: "Python va Django orqali server tomonini o‘rganish.",
-    technologies: ["Python", "Django", "REST API"],
-  },
-  {
-    slug: "uiux",
-    title: "UI/UX Dizayn",
-    description: "Figma va dizayn asoslari yordamida kreativ interfeyslar.",
-    technologies: ["Figma", "Prototyping", "Wireframes"],
-  },
-];
 
 // --- Example real fetching process (commented for now) ---
 // import { getCourses } from "../../lib/api";
@@ -65,13 +45,28 @@ export default function Enroll() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
+  const [realCourses, setRealCourses] = useState([]); // New state for real courses
+
+  useEffect(() => {
+    const fetchRealCourses = async () => {
+      try {
+        const res = await fetch("/featuredCourses.json");
+        const data = await res.json();
+        setRealCourses(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Error fetching real courses:", error);
+        setRealCourses([]);
+      }
+    }
+      fetchRealCourses()
+  }, []);
 
   useEffect(() => {
     if (step === 2) {
       // Fake loading to simulate API
       setLoading(true);
       setTimeout(() => {
-        setCourses(fakeCourses);
+        setCourses(realCourses);
         setLoading(false);
       }, 600);
     }

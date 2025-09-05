@@ -1,52 +1,98 @@
 [
   {
+    "id": 1,
     "name": "Dilshod Karimov",
-    "subject": "Frontend Dasturlash — Zamonaviy va interaktiv veb interfeyslar yaratish",
-    "image": "https://readdy.ai/api/search-image?query=Professional%20female%20computer%20science%20teacher%20in%20modern%20classroom%2C%20confident%20smile%2C%20wearing%20business%20casual%20attire%2C%20clean%20educational%20background%20with%20technology%20elements%2C%20professional%20headshot%20style&width=300&height=300&seq=teacher1&orientation=squarish"
+    "subject": "Frontend Development",
+    "bio": "10+ yillik tajribaga ega frontend dasturchi, zamonaviy UI/UX interfeyslarni yaratishda ustoz.",
+    "achievements": [
+      "Google sertifikatlangan Frontend mutaxassisi",
+      "500+ talabaga React va Vue.js bo‘yicha ta’lim bergan",
+      "Yirik e-commerce loyihalarida senior developer sifatida ishlagan"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,man,developer"
   },
   {
+    "id": 2,
     "name": "Malika Rakhimova",
-    "subject": "Backend Dasturlash — Serverlar, ma’lumotlar bazasi va API’larni boshqarish",
-    "image": "https://readdy.ai/api/search-image?query=Professional%20female%20computer%20science%20teacher%20in%20modern%20classroom%2C%20confident%20smile%2C%20wearing%20business%20casual%20attire%2C%20clean%20educational%20background%20with%20technology%20elements%2C%20professional%20headshot%20style&width=300&height=300&seq=teacher1&orientation=squarish"
+    "subject": "Backend Development",
+    "bio": "Node.js va ma’lumotlar bazalarida professional mutaxassis, server taraf tizimlarni ishlab chiqishda yetakchi.",
+    "achievements": [
+      "Node.js asosida 20+ yirik loyiha yaratgan",
+      "AWS Certified Developer",
+      "500+ backend dasturchilarni tayyorlagan"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,woman,developer"
   },
   {
+    "id": 3,
     "name": "Akmaljon Ismoilov",
-    "subject": "Python Dasturlash — Asoslardan avtomatlashtirish va AI gacha",
-    "image": "https://images.unsplash.com/photo-1595152772835-219674b2a8a6"
+    "subject": "Python Programming",
+    "bio": "Python asosida avtomatlashtirish, web va data science loyihalarida ekspert.",
+    "achievements": [
+      "AI va Data Science sohasida 10+ yil tajriba",
+      "2000+ talabaga Python bo‘yicha ta’lim bergan",
+      "Dasturlash bo‘yicha xalqaro konferensiyalarda spiker"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,python,developer"
   },
   {
+    "id": 4,
     "name": "Gulnora Tursunova",
-    "subject": "Sun’iy Intellekt — Mashinalarni aqlli fikrlashga o‘rgatish",
-    "image": "https://images.unsplash.com/photo-1554151228-14d9def656e4"
+    "subject": "Artificial Intelligence",
+    "bio": "AI va Machine Learning bo‘yicha yetakchi mutaxassis, innovatsion startaplar bilan ishlagan.",
+    "achievements": [
+      "Stanford AI kursi sertifikatiga ega",
+      "Machine Learning yordamida 5 ta startapni muvaffaqiyatli yo‘lga qo‘ygan",
+      "AI bo‘yicha 1000+ talabani tayyorlagan"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,woman,ai"
   },
   {
+    "id": 5,
     "name": "Rustam Abdullaev",
-    "subject": "Grafik Dizayn — Ijodkorlik va raqamli vositalar uyg‘unligi",
-    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"
+    "subject": "Graphic Design",
+    "bio": "Grafik dizayn va brending bo‘yicha 15+ yillik tajribaga ega kreativ dizayner.",
+    "achievements": [
+      "Adobe sertifikatlangan dizayner",
+      "100+ brend uchun logo va brending yaratgan",
+      "Talabalari 50+ dizayn tanlovlarida g‘olib bo‘lgan"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,man,designer"
   },
   {
+    "id": 6,
     "name": "Madina Qodirova",
-    "subject": "3D Max — Hayratlanarli 3D olamlar va modellar yaratish",
-    "image": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce"
+    "subject": "3D Max",
+    "bio": "3D modellashtirish va animatsiya ustasi, arxitektura va interyer loyihalarida katta tajribaga ega.",
+    "achievements": [
+      "Autodesk 3ds Max professional sertifikatiga ega",
+      "200+ interyer va eksteryer loyihalarini yaratgan",
+      "500+ talabaga 3D modellashtirishni o‘rgatgan"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,woman,3d"
   },
   {
+    "id": 7,
     "name": "Shahzod Yusupov",
-    "subject": "SMM (Ijtimoiy Tarmoqlar Marketingi) — Brendlarni raqamli olamda rivojlantirish",
-    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1"
+    "subject": "SMM",
+    "bio": "Ijtimoiy tarmoqlar marketingi bo‘yicha professional, kontent va reklama kampaniyalarini boshqaruvchi.",
+    "achievements": [
+      "Facebook & Instagram Ads bo‘yicha sertifikatlangan",
+      "100+ biznes uchun SMM strategiya ishlab chiqqan",
+      "10,000+ talaba va biznes egalariga trening o‘tkazgan"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,man,marketing"
   },
   {
+    "id": 8,
     "name": "Saida Iskandarova",
-    "subject": "Matematika — Har bir masalaning mantiqiy yechimini topish",
-    "image": "https://images.unsplash.com/photo-1527980965255-d3b416303d12"
-  },
-  {
-    "name": "Bekzod Umarov",
-    "subject": "Ingliz Tili — Global dunyoda ishonch bilan muloqot qilish",
-    "image": "https://images.unsplash.com/photo-1527980965255-d3b416303d12"
-  },
-  {
-    "name": "Nigora Mirzaeva",
-    "subject": "Ma’lumotlar Ilmi (Data Science) — Xom ma’lumotlarni kuchli bilimga aylantirish",
-    "image": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39"
+    "subject": "Foundation",
+    "bio": "Kompyuter savodxonligi va ofis dasturlarini o‘rgatishda katta tajribaga ega instruktor.",
+    "achievements": [
+      "Microsoft Office Specialist sertifikatiga ega",
+      "1000+ talabani kompyuter asoslari bo‘yicha tayyorlagan",
+      "10 yildan ortiq o‘qituvchilik tajribasiga ega"
+    ],
+    "image": "https://source.unsplash.com/300x300/?portrait,woman,teacher"
   }
 ]

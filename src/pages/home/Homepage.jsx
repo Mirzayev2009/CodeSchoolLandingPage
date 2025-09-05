@@ -295,9 +295,9 @@ const HomePage = () => {
               <Card
                 key={index}
                 className="overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                onClick={() => navigate("courses")}
+                onClick={() => navigate(`courses/${course.slug}`)}
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-auto overflow-hidden">
                   <img
                     src={course.image}
                     alt={course.title}
@@ -348,7 +348,7 @@ const HomePage = () => {
                 key={index}
                 className="text-center p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
               >
-                <CardHeader>
+                <CardHeader onClick={() => navigate(`teachers/${expert.id}`)}>
                   <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
                     <img
                       src={expert.image}

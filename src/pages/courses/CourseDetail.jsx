@@ -1,57 +1,29 @@
 // src/pages/CourseDetail.jsx
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Footer from "../footer/Footer";
-import { Link } from "react-router-dom";
-
-// Fake API Array (temporary, replace later with real API call)
-// const fetchCourseBySlug = async (slug) => {
-//   const { data } = await api.get(`/courses/${slug}`);
-//   return data;
-// };
-const fakeCourses = [
-  {
-    slug: "web-dev",
-    title: "Full-Stack Web Dasturlash",
-    description:
-      "Ushbu kurs sizni boshlang‘ichdan professional Full-Stack dasturchiga aylantiradi. Haqiqiy loyihalar, deploy va zamonaviy texnologiyalar bilan ishlashni o‘rganasiz.",
-    image: "https://source.unsplash.com/1200x600/?coding,developer",
-    duration: "12 hafta",
-    level: "Boshlang‘ich",
-    lessons: 45,
-    highlights: [
-      "HTML, CSS, JavaScript, React & Node.js ni mukammal o‘zlashtirasiz",
-      "Haqiqiy loyihalar ustida ishlaysiz",
-      "Ma’lumotlar bazalari va deploy jarayonini tushunasiz",
-    ],
-    curriculum: [
-      {
-        module: "Frontend asoslari",
-        classes: ["HTML & CSS asoslari", "JavaScript fundamentalari", "React boshlanishi"],
-      },
-      {
-        module: "Backend bilan Node.js",
-        classes: ["Node.js kirish", "Express.js bilan API yaratish", "Ma’lumotlar bazalari bilan ishlash"],
-      },
-      {
-        module: "Loyihani yakunlash",
-        classes: ["Deploy jarayoni", "Scaling & Optimallashtirish"],
-      },
-    ],
-    instructor: {
-      name: "Jahongir Karimov",
-      role: "Senior Full-Stack Dasturchi",
-      bio: "10+ yillik tajribaga ega dasturchi, xalqaro kompaniyalarda ishlagan va yuzlab o‘quvchilarga dars bergan.",
-      photo: "https://source.unsplash.com/200x200/?portrait,man",
-    },
-  },
-];
 
 export default function CourseDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [openModule, setOpenModule] = useState(null);
-  const course = fakeCourses.find((c) => c.slug === slug);
+  const [course, setCourse] = useState(null);
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const res = await fetch("/featuredCourses.json");
+        const data = await res.json();
+        const foundCourse = data.find((c)=> c.slug === slug)
+        setCourse(foundCourse || null);
+      } catch (error) {
+        console.error("Error fetching course:", error);
+        setCourse(null);
+      }
+    };
+
+    fetchCourse();
+  }, [slug]);
 
   if (!course) {
     return (
@@ -104,67 +76,73 @@ export default function CourseDetail() {
           </div>
 
           {/* Highlights */}
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Nimalarni o‘rganasiz</h2>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              {course.highlights.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
-          </div>
+          {course.highlights && (
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Nimalarni o‘rganasiz</h2>
+              <ul className="list-disc list-inside text-gray-700 space-y-2">
+                {course.highlights.map((point, index) => (
+                  <li key={index}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Curriculum */}
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Dastur</h2>
-            <div className="space-y-4">
-              {course.curriculum.map((module, index) => (
-                <div key={index} className="bg-white shadow rounded-xl">
-                  <button
-                    onClick={() =>
-                      setOpenModule(openModule === index ? null : index)
-                    }
-                    className="w-full flex justify-between items-center px-6 py-4 font-semibold text-gray-800 hover:bg-gray-100 transition"
-                  >
-                    <span>{module.module}</span>
-                    <span>{openModule === index ? "−" : "+"}</span>
-                  </button>
-                  {openModule === index && (
-                    <ul className="px-8 pb-4 text-gray-600 space-y-2 animate-fadeIn">
-                      {module.classes.map((cls, i) => (
-                        <li key={i}>📖 {cls}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
+          {course.curriculum && (
+            <div>
+              <h2 className="text-2xl font-bold mb-4">Dastur</h2>
+              <div className="space-y-4">
+                {course.curriculum.map((module, index) => (
+                  <div key={index} className="bg-white shadow rounded-xl">
+                    <button
+                      onClick={() =>
+                        setOpenModule(openModule === index ? null : index)
+                      }
+                      className="w-full flex justify-between items-center px-6 py-4 font-semibold text-gray-800 hover:bg-gray-100 transition"
+                    >
+                      <span>{module.module}</span>
+                      <span>{openModule === index ? "−" : "+"}</span>
+                    </button>
+                    {openModule === index && (
+                      <ul className="px-8 pb-4 text-gray-600 space-y-2 animate-fadeIn">
+                        {module.classes.map((cls, i) => (
+                          <li key={i}>📖 {cls}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Right Section */}
         <div className="space-y-6">
           {/* Instructor */}
-          <div className="bg-white p-6 shadow rounded-xl flex flex-col items-center text-center">
-            <img
-              src={course.instructor.photo}
-              alt={course.instructor.name}
-              className="w-24 h-24 rounded-full object-cover mb-4"
-            />
-            <h3 className="text-xl font-semibold">{course.instructor.name}</h3>
-            <p className="text-gray-600">{course.instructor.role}</p>
-            <p className="text-gray-500 mt-2">{course.instructor.bio}</p>
-          </div>
+          {course.instructor && (
+            <div className="bg-white p-6 shadow rounded-xl flex flex-col items-center text-center">
+              <img
+                src={course.instructor.photo}
+                alt={course.instructor.name}
+                className="w-24 h-24 rounded-full object-cover mb-4"
+              />
+              <h3 className="text-xl font-semibold">{course.instructor.name}</h3>
+              <p className="text-gray-600">{course.instructor.role}</p>
+              <p className="text-gray-500 mt-2">{course.instructor.bio}</p>
+            </div>
+          )}
 
           {/* Register Button */}
           <Link to="/enroll">
-          <button className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow hover:scale-105 transition transform duration-200">
-            🚀 Ro‘yxatdan o‘tish
-          </button>
+            <button className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow hover:scale-105 transition transform duration-200">
+              🚀 Ro‘yxatdan o‘tish
+            </button>
           </Link>
         </div>
       </div>
 
-        <Footer />
+      <Footer />
     </div>
   );
 }

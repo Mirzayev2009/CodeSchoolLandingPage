@@ -1,32 +1,19 @@
 // TeacherDetail.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Award, Star, BookOpen } from "lucide-react";
 
-const teachers = [
-  {
-    id: 1,
-    name: "Dilshod Karimov",
-    subject: "Matematika",
-    image: "/images/teacher1.jpg",
-    tagline: "10 yillik tajribaga ega, xalqaro olimpiada murabbiyi",
-    bio: "O‘quvchilarga matematikani oson va qiziqarli usullarda o‘rgatadi. Xalqaro olimpiadalarda ko‘plab sovrinlar qo‘lga kiritgan.",
-    achievements: ["Xalqaro Olimpiada sovrindori", "Top 100 O‘qituvchi 2023", "10 yillik tajriba"],
-  },
-  {
-    id: 2,
-    name: "Malika Yusupova",
-    subject: "Ingliz tili",
-    image: "/images/teacher2.jpg",
-    tagline: "IELTS 8.5 natijaga ega professional ustoz",
-    bio: "Ingliz tilini zamonaviy metodlar orqali o‘rgatadi. Talabalari IELTS va CEFR imtihonlarida yuqori natijalarga erishishgan.",
-    achievements: ["IELTS 8.5", "Cambridge sertifikatli ustoz", "500+ o‘quvchi tayyorlagan"],
-  },
-];
 
 export default function TeacherDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [teachers, setTeachers] = React.useState([]);
+  useEffect(() => {
+    fetch("/experts.json")
+      .then((res) => res.json())
+      .then((data) => setTeachers(data))
+      .catch(() => setTeachers([]));
+  }, []);
   const teacher = teachers.find((t) => t.id === parseInt(id));
 
   if (!teacher) {
