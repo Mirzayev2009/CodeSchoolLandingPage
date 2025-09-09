@@ -1,4 +1,5 @@
 import React, { use, useEffect, useMemo, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -86,9 +87,29 @@ export default function Enroll() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const [submitError, setSubmitError] = useState("");
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     if (!form.courseSlug) return;
+    setLoading(true);
+    // Insert into Supabase
+    const { error } = await supabase.from("CodeSchoolForm").insert([
+      {
+        name: form.name,
+        surname: form.surname,
+        location: form.location,
+        phone: form.phone,
+        telegramUsername: form.telegram,
+        chosenSubject: form.courseSlug,
+        created_at: new Date().toISOString(),
+      },
+    ]);
+    setLoading(false);
+    if (error) {
+      setSubmitError("Xatolik yuz berdi. Iltimos, qayta urinib ko'ring.");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -329,17 +350,20 @@ export default function Enroll() {
                 </motion.div>
               )}
 
-              <div className="flex justify-end">
+              <div className="flex flex-col items-end gap-2">
+                {submitError && (
+                  <p className="text-red-600 text-sm mb-2">{submitError}</p>
+                )}
                 <button
                   type="submit"
-                  disabled={!form.courseSlug}
+                  disabled={!form.courseSlug || loading}
                   className={`px-8 py-3 rounded-md text-white font-medium transition shadow ${
-                    form.courseSlug
+                    form.courseSlug && !loading
                       ? "bg-emerald-600 hover:bg-emerald-700 hover:shadow-lg"
                       : "bg-gray-400 cursor-not-allowed"
                   }`}
                 >
-                  Yuborish ✅
+                  {loading ? "Yuborilmoqda..." : "Yuborish ✅"}
                 </button>
               </div>
             </motion.form>

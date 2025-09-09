@@ -23,6 +23,7 @@ import { useNavigate } from "react-router-dom";
 import HomePageSections from "./sections";
 import Location from "./Location";
 import { Link } from "react-router-dom";
+import HeroCarousel from "./Swiper";
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState("home");
@@ -127,53 +128,8 @@ const HomePage = () => {
     <div className="min-h-screen bg-white">
       <Navigation currentPage={currentPage} navigateToPage={navigate} />
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
-        <Swiper
-          modules={swiperModules}
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          navigation={true}
-          loop={true}
-          className="h-full"
-          onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
-        >
-          {heroSlides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div className="relative h-full">
-                <div className="absolute inset-0">
-                  <img
-                    src={slide.image}
-                    alt={slide.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                </div>
-                <div className="relative z-10 h-full flex items-center">
-                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-2xl">
-                      <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                        {slide.title}
-                      </h1>
-                      <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-                        {slide.description}
-                      </p>
-                      <Link to='/enroll'>
-                      
-                        <Button className="!rounded-button whitespace-nowrap bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg cursor-pointer">
-                          Enroll Now
-                        </Button></Link>
-                     
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <section className="relative h-screen ">
+    <HeroCarousel slides={heroSlides} />
       </section>
       {/* Bizning Yutuqlar Bo‘limi */}
       <section
