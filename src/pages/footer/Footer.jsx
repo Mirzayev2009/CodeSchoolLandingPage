@@ -12,7 +12,8 @@ const Footer = () => {
               <span className="text-xl font-bold">CodeSchool</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Dunyodagi talabalar uchun sifatli ta’lim: dasturlash, matematika va ingliz tili.
+              Dunyodagi talabalar uchun sifatli ta’lim: dasturlash, matematika
+              va ingliz tili.
             </p>
             <div className="flex space-x-4">
               <i className="fab fa-facebook text-xl text-gray-400 hover:text-blue-400 cursor-pointer"></i>
@@ -26,22 +27,32 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Tezkor havolalar</h3>
             <ul className="space-y-2">
-              <li className="text-gray-400 hover:text-white cursor-default">Natijalar</li>
-              <li className="text-gray-400 hover:text-white cursor-default">Kurslar</li>
-              <li className="text-gray-400 hover:text-white cursor-default">O‘qituvchilar</li>
-              <li className="text-gray-400 hover:text-white cursor-default">Ro‘yxatdan o‘tish</li>
+              <li className="text-gray-400 hover:text-white cursor-default">
+                Natijalar
+              </li>
+              <li className="text-gray-400 hover:text-white cursor-default">
+                Kurslar
+              </li>
+              <li className="text-gray-400 hover:text-white cursor-default">
+                O‘qituvchilar
+              </li>
+              <li className="text-gray-400 hover:text-white cursor-default">
+                Ro‘yxatdan o‘tish
+              </li>
             </ul>
           </div>
 
           {/* Kurslar */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Kurslar</h3>
-            <ul className="space-y-2">
-              <li className="text-gray-400 hover:text-white cursor-default">Frontend</li>
-              <li className="text-gray-400 hover:text-white cursor-default">Backend</li>
-              <li className="text-gray-400 hover:text-white cursor-default">Sun’iy Intellekt (AI)</li>
-            </ul>
-            <p className="text-gray-500 text-sm mt-2">Boshqa kurslar ham mavjud...</p>
+          <div className="w-40 ">
+            <h3 className="text-lg font-semibold mb-4">GUVOHNOMA</h3>
+            <div className="flex  space-y-2   ">
+              <img className="w-40" src="images\certificate.png" alt="" />
+              <img
+                className="w-40 h-25 "
+                src="images\CODE SCHOOL IT Park sertifikati.jpg"
+                alt=""
+              />
+            </div>
           </div>
 
           {/* Aloqa */}

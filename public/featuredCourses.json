@@ -136,6 +136,55 @@
     }
   },
   {
+  "slug": "mobile-flutter",
+  "title": "Mobile — Flutter",
+  "description": "Flutter va Dart yordamida cross-platform mobil ilovalar yaratishni o‘rganing: UI dizayn, state management, API integratsiyasi va ilovani nashr qilishgacha.",
+  "image": "images/flutter.webp",
+  "duration": "8 hafta",
+  "level": "Boshlang‘ich",
+  "lessons": 24,
+  "highlights": [
+    "Dart dasturlash tili",
+    "Flutter widgets va layout",
+    "State management (Provider, Bloc kirish)",
+    "REST API va lokal ma'lumotlar bilan ishlash",
+    "Firebase bilan autentifikatsiya va ma'lumotlar saqlash",
+    "Ilovani Play Store/App Store uchun tayyorlash"
+  ],
+  "curriculum": [
+    {
+      "module": "Dart asoslari",
+      "classes": ["O‘zgaruvchilar va turlari", "Funktsiyalar va OOP", "Asinxronlik (Future, async/await)"]
+    },
+    {
+      "module": "Flutter asoslari",
+      "classes": ["Widgets tuzilishi", "Layout va responsiv dizayn", "Navigatsiya va routing"]
+    },
+    {
+      "module": "State management",
+      "classes": ["setState va lifecycle", "Provider bilan boshqaruv", "Bloc/Streams ga kirish (tanlov uchun)"]
+    },
+    {
+      "module": "Ma'lumotlar va API",
+      "classes": ["HTTP so‘rovlar va JSON parsing", "Local storage — SharedPreferences va SQLite", "Firebase Firestore bilan ishlash"]
+    },
+    {
+      "module": "Deployment va optimizatsiya",
+      "classes": ["Debug va profiling", "App store metadata va nashr qilish", "Performans optimizatsiyasi"]
+    },
+    {
+      "module": "Final loyiha",
+      "classes": ["Ilova rejalashtirish", "Implementatsiya va test", "Prezidentatsiya va GitHub hosting"]
+    }
+  ],
+  "instructor": {
+    "name": "Javlon Mirzaev",
+    "role": "Mobile Trener",
+    "bio": "Mobil ilovalar ishlab chiqishda bir nechta startap va korporativ loyihalarda qatnashgan, Flutter asosida real-world ilovalar yaratishni o‘rgatadi.",
+    "photo": "https://source.unsplash.com/200x200/?developer,phone"
+  }
+},
+  {
     "slug": "design",
     "title": "Grafik Dizayn",
     "description": "Photoshop, Illustrator va zamonaviy dizayn vositalarida kreativ dizayn loyihalari yarating.",

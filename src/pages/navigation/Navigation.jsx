@@ -7,9 +7,9 @@ const NAV_HEIGHT = 72;
 
 
 const items = [
-  { label: "Natijalar", id: "success-section" },
   { label: "Kurslar", id: "courses-section" },
   { label: "O'qituvchilar", id: "experts-section" },
+  { label: "Manzil", id: "location-section" },
   { label: "Bepul sinov dars", id: "forum-section" },
 ];
 
@@ -112,12 +112,7 @@ export default function Navigation({ currentPage, navigateToPage }) {
               <Phone size={16} />
               <span className="font-semibold">+998 50 400 40 00</span>
             </a>
-            <button
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 shadow-sm transition-colors"
-              onClick={() => navigate("/cabinet")}
-            >
-              Shaxsiy kabinet
-            </button>
+       
           </div>
 
           {/* Mobile Toggle */}

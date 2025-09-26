@@ -1,21 +1,38 @@
 [
   {
     "id": 1,
-    "name": "Dilshod Karimov",
-    "subject": "Frontend Development",
-    "bio": "10+ yillik tajribaga ega frontend dasturchi, zamonaviy UI/UX interfeyslarni yaratishda ustoz.",
-    "achievements": [
-      "Google sertifikatlangan Frontend mutaxassisi",
-      "500+ talabaga React va Vue.js bo‘yicha ta’lim bergan",
-      "Yirik e-commerce loyihalarida senior developer sifatida ishlagan"
-    ],
+    "name": "Alisher Khujanov",
+    "subject": "Frontend and Backend Development",
+    "bio": " 7+ yillik tajribaga ega frontend va backend dasturchi, zamonaviy UI/UX interfeyslarni yaratishda ustoz.",
+"achievements": [
+  "Git + Github",
+  "HTML-5 | SCSS | JavaScript | TypeScript",
+  "React | Next (React Native - optional)",
+  "Vue | Nuxt",
+  "Angular",
+  "Project - UI | UX design (Figma)",
+  "Deployment of Frontend",
+  "Python | Object Oriented Programming (OOP)",
+  "Algorithms and Logical Thinking",
+  "Telegram Bots",
+  "PostgreSQL",
+  "Django",
+  "DRF (Django Rest Framework)",
+  "Deployment",
+  "Testing",
+  "Jest + Playwright (Frontend)",
+  "Selenium + PyTest (Backend)",
+  "Docker container",
+  "Vercel + PythonAnywhere + Render"
+],
+
     "image": "https://source.unsplash.com/300x300/?portrait,man,developer"
   },
   {
     "id": 2,
-    "name": "Malika Rakhimova",
-    "subject": "Backend Development",
-    "bio": "Node.js va ma’lumotlar bazalarida professional mutaxassis, server taraf tizimlarni ishlab chiqishda yetakchi.",
+    "name": "Sanjar ",
+    "subject": "Backend and Mobile   Development",
+    "bio": "Python va ma’lumotlar bazalarida professional mutaxassis, server taraf tizimlarni ishlab chiqishda yetakchi.",
     "achievements": [
       "Node.js asosida 20+ yirik loyiha yaratgan",
       "AWS Certified Developer",
@@ -37,13 +54,11 @@
   },
   {
     "id": 4,
-    "name": "Gulnora Tursunova",
-    "subject": "Artificial Intelligence",
-    "bio": "AI va Machine Learning bo‘yicha yetakchi mutaxassis, innovatsion startaplar bilan ishlagan.",
+    "name": "Muhammad Olimov",
+    "subject": "Artificial Intelligence va Python",
+    "bio": "AI va Machine Learning bo‘yicha yetakchi 2 yillik mutaxassis, innovatsion startaplar bilan ishlagan.",
     "achievements": [
-      "Stanford AI kursi sertifikatiga ega",
-      "Machine Learning yordamida 5 ta startapni muvaffaqiyatli yo‘lga qo‘ygan",
-      "AI bo‘yicha 1000+ talabani tayyorlagan"
+      ""
     ],
     "image": "https://source.unsplash.com/300x300/?portrait,woman,ai"
   },

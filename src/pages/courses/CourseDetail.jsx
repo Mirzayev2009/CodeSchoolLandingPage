@@ -140,9 +140,7 @@ export default function CourseDetail() {
             </button>
           </Link>
         </div>
-      </div>
-
-      <Footer />
+      </div>I'm boot. 
     </div>
   );
 }

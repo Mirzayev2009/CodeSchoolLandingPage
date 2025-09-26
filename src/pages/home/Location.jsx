@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const Location = () => {
   return (
-    <section className="py-16 px-6 bg-white">
+    <section id="location-section" className="py-16 px-6 bg-white">
       <div className="max-w-6xl mx-auto text-center">
         {/* Title */}
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -13,8 +13,8 @@ const Location = () => {
         {/* Motivational Text */}
         <p className="text-gray-600 max-w-2xl mx-auto mb-12">
           Zamonaviy auditoriyalar samarali ta’lim olish uchun barcha zarur
-          jihozlar bilan ta’minlangan. Bizning markazimizga tashrif buyurib,
-          o‘z ko‘zingiz bilan ko‘rishga taklif qilamiz!
+          jihozlar bilan ta’minlangan. Bizning markazimizga tashrif buyurib, o‘z
+          ko‘zingiz bilan ko‘rishga taklif qilamiz!
         </p>
 
         {/* Main Image with Overlay */}
@@ -37,7 +37,10 @@ const Location = () => {
           <div className="absolute bottom-6 left-6">
             <Button
               onClick={() =>
-                window.open("https://yandex.uz/maps/-/CDDGjN1N", "_blank")
+                window.open(
+                  "https://yandex.uz/maps/org/178211271511/?ll=66.942648%2C39.671529&mode=search&sctx=ZAAAAAgBEAAaKAoSCXHjFvNzvlBAETEnaJPD00NAEhIJm44AbhYvxj8REFg5tMh2vj8iBgABAgMEBSgKOABA3lBIAWoCdXqdAc3MzD2gAQCoAQC9AS05RRDCAQbX5uDxlwWCAgpDb2RlU2Nob29sigIAkgIAmgIMZGVza3RvcC1tYXBz&sll=66.942648%2C39.671529&source=morda&sspn=0.055275%2C0.027328&text=CodeSchool&z=14",
+                  "_blank"
+                )
               }
               className="bg-red-600 hover:bg-red-700 transition-transform duration-300 hover:scale-105"
             >
